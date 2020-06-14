@@ -1,0 +1,37 @@
+{
+    "name" : "BendhExtension",
+    "description" : "Soyez informés lorsque que Bendhero est en live !",
+    "version" : "1",
+    "manifest_version":2,
+    "browser_action" : {
+        "default_popup" : "index.html",
+        "default_icon" : "img/icon-off-64.png"
+    },
+    "icons" : {
+        "64" : "img/icon-on-64.png",
+        "128" : "img/icon-on-128.png"
+    },
+    "background" : {
+        "scripts": [
+            "js/jquery.js",
+            "js/config.js",
+            "js/functions.js",
+            "js/initialization.js",
+            "js/background.js",
+            "js/twitter.js"
+        ],
+        "persistent": true
+    },
+    "content_security_policy": "script-src 'self' https://platform.twitter.com/widgets.js; object-src 'self'",
+    "permissions": [
+        "tabs",
+        "storage",
+        "notifications",
+        "https://platform.twitter.com/widgets.js",
+        "https://twitter.com/bendhero?ref_src=twsrc%5Etfw"
+    ],
+    "content_scripts": [{
+        "js": ["js/twitter.js"],
+        "matches": ["http://*/*", "https://*/*"]
+      }]
+}
